@@ -18,3 +18,4 @@
 ## Inspiration of this project
 - [Youtube - Harkirat Singh](https://youtu.be/sz9K1e3LO4M?t=807)
 - [Youtube - Youtube Redesign](https://www.youtube.com/watch?v=OUqLhLS07CI)
+- Another Redesign Video - [Youtube - Redesign](https://www.youtube.com/watch?v=OUM6XmhViN4)
