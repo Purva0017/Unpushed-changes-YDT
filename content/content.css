@@ -1,0 +1,6 @@
+/* Base styles for hidden elements */
+.youdifytube-hidden {
+    display: none !important;
+  }
+  
+  /* Dynamic styles will be added by content script */

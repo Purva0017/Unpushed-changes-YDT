@@ -1,0 +1,34 @@
+{
+   "name": "YouDefineTube",
+   "short_name": "YDT",
+   "description": "Hide YouTube related videos, shorts, comments, suggestions wall, homepage recommendations, trending, and other distractions.",
+   "version": "1.0",
+   "author": "YouDefineTube",
+   "manifest_version": 3,
+   "minimum_chrome_version": "88",
+   "action": {
+      "default_icon": "/images/logo.png",
+      "default_popup": "popup/popup.html",
+      "default_title": "YouDefineTube"
+   },
+   "icons": {
+      "128": "/images/logo.png",
+      "16": "/images/logo.png",
+      "32": "/images/logo.png",
+      "48": "/images/logo.png"
+   },
+   "options_page": "options/options.html",
+   "background": {
+      "service_worker": "/background/background.js"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "css": [ "/content/content.css" ],
+      "js": [ "/content/content.js" ],
+      "matches": [ "https://www.youtube.com/*", "https://m.youtube.com/*" ],
+      "run_at": "document_start"
+   } ],
+   "host_permissions": [ "https://www.youtube.com/*", "https://m.youtube.com/*" ],
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmSMVHovsp5q3ElfkSjWA1dAL4jiaBAsQAvmLS1LkRStVzWgHQs8b1v69YMi0PCULXXvdsAuHkhj6NeA51HW0H6SzOJBWny+3RlG/XHXxIBJpaf5zAmkRC5+TJYYYBMkthQdnaV/1jnGH5NdJUhg0zIp6SSnvrKiGNLJ9gTkVnymoQ+jxar8vPoH4ad18ctIjs/rpND1Fj+Sx9pAn6MF46DSU6RozQCxf5WA6El4M11gZ6f+Ebrh8sZ/m9vInHUKBcGokrj+XBooRUtxzn1LIuTBGbTYrbdFaSFIMZJs9IH1iytf/yEee4K0Cj95mDTFxpNGoGW4fspiy0r0GDJWc/wIDAQAB",
+   "permissions": [ "storage", "webRequest", "scripting", "activeTab" ]
+}

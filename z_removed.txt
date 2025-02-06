@@ -1,0 +1,6 @@
+from manifest.json:
+"update_url": "https://clients2.google.com/service/update2/crx",
+   "web_accessible_resources": [ {
+      "matches": [ "https://www.youtube.com/*", "https://m.youtube.com/*" ],
+      "resources": [ "/js/ydt.js" ]
+   } ]
