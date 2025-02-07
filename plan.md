@@ -1,7 +1,3 @@
-## Enhancements for existing code
-- Hide comments isn't executed properly, has wrong code
-- Have to define the difference between functionality 
-
 ## New functionality addition
 - Add search functionality by including search box or use the default Youtube search.
 - Include Playlist tracker. Keep track of certain tutorial followed.
@@ -19,3 +15,6 @@
 - [Youtube - Harkirat Singh](https://youtu.be/sz9K1e3LO4M?t=807)
 - [Youtube - Youtube Redesign](https://www.youtube.com/watch?v=OUqLhLS07CI)
 - Another Redesign Video - [Youtube - Redesign](https://www.youtube.com/watch?v=OUM6XmhViN4)
+
+## Update 7th Feb
+- Tried giving topic based results on home feed without using api (failed)
