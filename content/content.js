@@ -2,11 +2,11 @@ const selectors = {
     homeFeed: ['ytd-browse[page-subtype="home"]', '#contents.ytd-rich-grid-renderer'],
     upNext: ['#related', '#autoplay-checkbox'],
     shorts: ['[is-shorts]', '#items [title="Shorts"]'],
-    comments: ['#comments', '#sections'],
+    comments: ['#comments'],   // , '#sections'
     // Add all other selectors here
   };
   
-  const observer = new MutationObserver(applySettings);
+  let observer = new MutationObserver(applySettings);
   let currentSettings = {};
   
   async function init() {
