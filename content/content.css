@@ -1,6 +1,17 @@
 /* Base styles for hidden elements */
 .youdifytube-hidden {
-    display: none !important;
-  }
-  
-  /* Dynamic styles will be added by content script */
+  display: none !important;
+}
+
+/* Dynamic styles will be added by content script */
+
+.ydt-search-results {
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.ydt-video-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+}

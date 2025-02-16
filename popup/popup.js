@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
   const controls = document.getElementById('controls');
   const settings = {
-    homeFeed: 'Hide Home Feed',
     upNext: 'Video Sidebar',
     shorts: 'Hide Shorts',
     comments: 'Hide Comments',
@@ -34,23 +33,46 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
-document.getElementById('addTopic').addEventListener('click', function () {
-  const topicInput = document.getElementById('topicInput');
-  const topic = topicInput.value.trim();
-  if (topic === '') return;
+const API_KEY = 'AIzaSyCUWbnQGIlQalfCit_cOfhcXVu3O_qZl-o';
 
-  const topicList = document.getElementById('topicList');
-  const topicItem = document.createElement('div');
-  topicItem.className = 'topic-item';
-  topicItem.innerHTML = `<span>${topic}</span> <button class="remove">&times;</button>`;
-  topicItem.classList.add("btn", "btn-light", "rounded-pill")
-  topicItem.style.display = 'inline-flex';
-  topicItem.style.alignItems = 'center'
-
-  topicList.appendChild(topicItem);
-  topicInput.value = '';
-
-  topicItem.querySelector('.remove').addEventListener('click', function () {
-    topicList.removeChild(topicItem);
-  });
+document.getElementById('search-button').addEventListener('click', performSearch);
+document.getElementById('search-input').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') performSearch();
 });
+
+async function performSearch() {
+  const query = document.getElementById('search-input').value.trim();
+  if (!query) return;
+  
+  try {
+    const response = await fetch(
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${encodeURIComponent(query)}&type=video&key=${API_KEY}`
+    );
+    
+    if (!response.ok) throw new Error('YouTube API request failed');
+    
+    const data = await response.json();
+    const searchResults = data.items.map(item => ({
+      id: item.id.videoId,
+      title: item.snippet.title,
+      channelTitle: item.snippet.channelTitle,
+      thumbnail: item.snippet.thumbnails.medium.url,
+      description: item.snippet.description
+    }));
+    
+    // Send search results to content script
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, {
+        type: 'SHOW_SEARCH_RESULTS',
+        results: searchResults,
+        query: query
+      });
+    });
+    
+    // Close popup after search
+    // window.close();
+  } catch (error) {
+    console.error('Error searching YouTube:', error);
+    // Could add error handling UI here
+  }
+}
